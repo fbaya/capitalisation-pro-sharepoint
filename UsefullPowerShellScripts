@@ -1,0 +1,8 @@
+function Set-SMIPSession([xml]$config) {
+	Write-Host -ForegroundColor White "Enabling Session Service " -NoNewline
+	$svc = Get-SPSessionStateService -ErrorAction SilentlyContinue
+	if ($svc -eq $null -or $svc.Enabled -eq $false) {
+		Enable-SPSessionStateService -DefaultProvision
+	}
+	Write-Host -ForegroundColor Black -BackgroundColor Green "OK"
+}
